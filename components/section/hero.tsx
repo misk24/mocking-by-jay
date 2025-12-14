@@ -6,7 +6,7 @@ export default function Hero() {
     <section 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(12, 10, 10, 0.7), rgba(12, 10, 10, 0.9)), url(/hero-studio.jpg)`,
+        backgroundImage: `linear-gradient(to bottom, rgba(12, 10, 10, 0.7), rgba(12, 10, 10, 0.9)), url(/images/hero-studio.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

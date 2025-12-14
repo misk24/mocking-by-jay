@@ -1,4 +1,5 @@
 import About from "@/components/section/about";
+import Artist from "@/components/section/artist";
 import Hero from "@/components/section/hero";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Hero />
       <About />
+      <Artist />
     </div>
   );
 }
