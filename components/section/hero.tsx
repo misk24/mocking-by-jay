@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 export default function Hero() {
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(12, 10, 10, 0.7), rgba(12, 10, 10, 0.9)), url(/hero-studio.jpg)`,
         backgroundSize: 'cover',
@@ -21,7 +21,7 @@ export default function Hero() {
           </h1>
           <div className="h-1 w-32 bg-primary mx-auto mb-6" />
           <p className="text-xl sm:text-2xl text-muted-foreground uppercase tracking-widest">
-            The Home of Raw Talent
+            Home of Raw Talent
           </p>
         </div>
 
