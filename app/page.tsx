@@ -1,6 +1,8 @@
 import About from "@/components/section/about";
 import Artist from "@/components/section/artist";
+import Contact from "@/components/section/contact";
 import Hero from "@/components/section/hero";
+import Quotes from "@/components/section/quotes";
 
 export default function Home() {
   return (
@@ -8,6 +10,8 @@ export default function Home() {
       <Hero />
       <About />
       <Artist />
+      <Contact />
+      <Quotes />
     </div>
   );
 }

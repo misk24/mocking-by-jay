@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/layout/footer";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -15,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Mocking by Jay",
-  description: "The Home of Raw Talent",
+  description: "Independent. Urban. Chill.",
 };
 
 export default function RootLayout({
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${bebasNeue.variable} ${inter.variable} antialiased`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );

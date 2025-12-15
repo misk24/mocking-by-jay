@@ -99,7 +99,7 @@ export const AudioPlayer = ({ trackName, artistName, audioUrl, className }: Audi
       />
       
       <div className="space-y-1">
-        <h4 className="font-semibold text-foreground text-sm">{trackName}</h4>
+        <h4 className="font-semibold text-foreground text-sm tracking-wider">{trackName}</h4>
         <p className="text-xs text-muted-foreground">{artistName}</p>
       </div>
 

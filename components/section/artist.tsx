@@ -69,7 +69,7 @@ const artists = [
 export default function Artist() {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-deep-black">
-      <h2 className="font-display text-4xl md:text-5xl mb-8 text-primary text-center">Our Artists</h2>
+      <h2 className="font-display text-4xl md:text-5xl mb-12 text-primary text-center">Our Artists</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {artists.map((artist, index) => (
           <Card
@@ -149,7 +149,7 @@ export default function Artist() {
       </div>
 
       {/* CTA Section */}
-      <div className="mt-16 text-center max-w-2xl mx-auto">
+      {/* <div className="mt-16 text-center max-w-2xl mx-auto">
         <h3 className="font-display text-3xl text-foreground mb-4">
           READY TO BOOK?
         </h3>
@@ -165,7 +165,7 @@ export default function Artist() {
             Book an Artist
           </Link>
         </Button>
-      </div>
+      </div> */}
     </section>
   )
 }
