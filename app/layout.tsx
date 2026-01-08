@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -29,7 +33,12 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${inter.variable} antialiased`}
       >
-        {children}
+        <Header />
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          {children}
+        </TooltipProvider>
         <Footer />
       </body>
     </html>

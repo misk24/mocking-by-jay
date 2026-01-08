@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 
 export default function Quotes() {
@@ -6,25 +9,40 @@ export default function Quotes() {
       <div className="max-w-4xl mx-auto animate-fade-in-up">
         <blockquote className="relative">
           {/* Opening Quote Mark */}
-          <div className="absolute -top-4 -left-4 md:-left-8 text-primary">
-            <Quote size={64} />
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="absolute -top-4 -left-4 md:-left-8 text-primary"
+          >
+            <Quote className="w-16 h-16" />
+          </motion.div>
 
           {/* Quote Text */}
-          <div className="relative z-10 pt-8 px-6 md:px-12">
+          <motion.div 
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative z-10 pt-8 px-6 md:px-12"
+          >
             <p className="text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-foreground italic">
               We are an independent record label built around authenticity.
               Every artist we represent brings their own identity, and we give them the space 
               to push it forward without compromise.
             </p>
-          </div>
+          </motion.div>
 
           {/* Author/Signature */}
-          <div className="mt-12 pt-6 border-t border-border/50 text-center">
+          <motion.div 
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="pt-6 text-center"
+          >
             <p className="text-sm md:text-base text-muted-foreground uppercase tracking-widest">
               — Mocking by Jay
             </p>
-          </div>
+          </motion.div>
         </blockquote>
       </div>
     </section>

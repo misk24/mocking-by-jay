@@ -1,11 +1,26 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function About() {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-deep-black">
-      <div className="max-w-4xl mx-auto animate-fade-in-up">
-        <h2 className="font-display text-4xl md:text-5xl mb-12 text-primary text-center">
-          Our Story
-        </h2>
-        <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="font-display text-4xl sm:text-5xl mb-12 text-primary text-center">
+            Our Story
+          </h2>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed"
+        >
           <p>
             Founded in 2015, Mocking by Jay emerged from the underground rap scene with a simple mission: 
             give raw talent a platform without compromising artistic integrity. What started as a basement 
@@ -21,7 +36,7 @@ export default function About() {
             commitment to keeping it real. From trap to conscious rap, from up-and-comers to established names, 
             we're building a legacy that future generations will respect.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
