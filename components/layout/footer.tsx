@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-deep-black border-t border-border py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-deep-black border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           {/* Brand */}
           <motion.div 
@@ -35,7 +35,7 @@ export default function Footer() {
               <a 
                 key={item.id}
                 href={item.href} 
-                className="text-muted-foreground hover:text-primary transition-smooth"
+                className="text-muted-foreground hover:text-primary transition-color"
                 aria-label={item.label}
               >
                 <Icon 

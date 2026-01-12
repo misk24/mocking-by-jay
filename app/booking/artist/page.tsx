@@ -1,36 +1,23 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import * as z from "zod";
-import { ArrowLeft } from "lucide-react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { ArrowLeft } from "lucide-react";
+import { ArtistBookingFormValues, artistBookingSchema } from "./schema";
 
-const bookingSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters").max(100),
-  email: z.string().email("Invalid email address").max(255),
-  phone: z.string().min(10, "Phone number must be at least 10 digits").max(20),
-  eventType: z.string().min(1, "Please select an event type"),
-  eventDate: z.string().min(1, "Event date is required"),
-  eventLocation: z.string().min(2, "Location must be at least 2 characters").max(200),
-  artist: z.string().min(1, "Please select an artist"),
-  details: z.string().max(1000, "Details must be less than 1000 characters").optional(),
-});
-
-type BookingFormValues = z.infer<typeof bookingSchema>;
-
-const Booking = () => {
+export default function ArtistBooking() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<BookingFormValues>({
-    resolver: zodResolver(bookingSchema),
+  const form = useForm<ArtistBookingFormValues>({
+    resolver: zodResolver(artistBookingSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -43,16 +30,16 @@ const Booking = () => {
     },
   });
 
-  const onSubmit = async (data: BookingFormValues) => {
+  async function onSubmit(values: ArtistBookingFormValues) {
     setIsSubmitting(true);
-    
+
     try {
-      console.log("Booking submitted:", data);
-      toast.success("Booking request submitted! We'll get back to you within 24 hours.");
+      console.log("Booking submitted:", values);
+      toast.success("Booking request submitted!");
       form.reset();
     } catch (error: any) {
       console.error("Error submitting booking:", error);
-      toast.error("Failed to submit booking. Please try again.");
+      toast.error("Submission failed. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -61,8 +48,8 @@ const Booking = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-6">
+      <header className="sticky top-0 z-10 bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
           <Link href="/">
             <Button
               variant="ghost"
@@ -242,6 +229,4 @@ const Booking = () => {
       </main>
     </div>
   );
-};
-
-export default Booking;
+}

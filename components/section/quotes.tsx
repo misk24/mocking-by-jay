@@ -6,7 +6,7 @@ import { Quote } from "lucide-react";
 export default function Quotes() {
   return (
     <section className="py-24 px-8 sm:px-16 lg:px-8 bg-deep-black">
-      <div className="max-w-4xl mx-auto animate-fade-in-up">
+      <div className="max-w-4xl mx-auto">
         <blockquote className="relative">
           {/* Opening Quote Mark */}
           <motion.div 
@@ -37,7 +37,7 @@ export default function Quotes() {
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="pt-6 text-center"
+            className="pt-6 px-6 md:px-12"
           >
             <p className="text-sm md:text-base text-muted-foreground uppercase tracking-widest">
               — Mocking by Jay

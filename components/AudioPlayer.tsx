@@ -106,7 +106,7 @@ export const AudioPlayer = ({ trackName, artistName, audioUrl, className }: Audi
           variant="ghost"
           size="icon"
           onClick={togglePlay}
-          className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
+          className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground cursor-pointer"
         >
           {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-0.5" />}
         </Button>

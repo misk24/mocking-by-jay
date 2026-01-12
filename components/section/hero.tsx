@@ -44,7 +44,7 @@ export default function Hero() {
             <Button 
               variant="hero" 
               size="xl"
-              className="text-xl sm:text-2xl py-8 px-16"
+              className="text-xl sm:text-2xl py-8 px-16 cursor-pointer"
             >
               Book an Artist
             </Button>

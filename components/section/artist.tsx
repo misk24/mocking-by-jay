@@ -91,7 +91,7 @@ export default function Artist() {
                   <Button
                     asChild
                     variant="urban"
-                    className="group-hover:border-primary group-hover:text-primary"
+                    className="hover:border-primary hover:text-primary"
                   >
                     <Link href="/booking/artist">
                       Book {artist.name}

@@ -1,13 +1,13 @@
 "use client";
 
 import { menuItems } from "@/constants/menu";
+import { useOverlay } from "@/hooks/useOverlay";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Header() {
-  const [showMenu, setShowMenu] = useState(false);
+  const showMenu = useOverlay();
 
   return (
     <header className="fixed right-0 z-50 p-4 sm:p-6 lg:p-8">
@@ -15,18 +15,19 @@ export default function Header() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="flex justify-end"
+        className="flex justify-end p-2 bg-transparent backdrop-blur-sm"
       >
         <button
-          onClick={() => setShowMenu(true)}
-          aria-expanded={showMenu}
+          onClick={showMenu.toggle}
+          aria-expanded={showMenu.isOpen}
           aria-label="Toggle menu"
+          className="cursor-pointer"
         >
           <Menu className="w-6 h-6 text-foreground hover:text-primary transition-colors" />
         </button>
       </motion.nav>
 
-      {showMenu && (
+      {showMenu.isOpen && (
         <motion.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
@@ -34,11 +35,11 @@ export default function Header() {
           className="fixed inset-0 bg-background/90 backdrop-blur-sm z-10 flex items-center justify-center"
         >
           <button
-            onClick={() => setShowMenu(false)}
+            onClick={showMenu.close}
             aria-label="Close menu"
-            className="absolute top-0 right-0 p-4 sm:p-6 lg:p-8"
+            className="absolute top-0 right-0 p-6 sm:p-8 lg:p-10"
           >
-            <X className="w-6 h-6 text-foreground hover:text-primary transition-colors" />
+            <X className="w-6 h-6 text-foreground hover:text-primary transition-colors cursor-pointer" />
           </button>
 
           <nav className="text-center">
@@ -52,7 +53,6 @@ export default function Header() {
                 >
                   <Link 
                     href={item.href} 
-                    onClick={() => setShowMenu(false)} 
                     className="text-4xl sm:text-6xl font-bold text-foreground hover:text-primary transition-colors"
                   >
                     {item.label}

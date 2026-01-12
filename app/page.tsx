@@ -8,10 +8,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Hero />
-      <About />
       <Artist />
-      <Contact />
+      <About />
       <Quotes />
+      <Contact />
     </div>
   );
 }
