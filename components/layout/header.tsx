@@ -1,6 +1,6 @@
 "use client";
 
-import { menuItems } from "@/constants/menu";
+import { MENU_ITEMS } from "@/constants/menu";
 import { useOverlay } from "@/hooks/useOverlay";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -44,7 +44,7 @@ export default function Header() {
 
           <nav className="text-center">
             <ul className="space-y-8">
-              {menuItems.map((item, index) => (
+              {MENU_ITEMS.map((item, index) => (
                 <motion.li 
                   key={index} 
                   initial={{ opacity: 0 }} 

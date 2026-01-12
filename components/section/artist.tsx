@@ -3,8 +3,8 @@
 import { AudioPlayer } from "@components/AudioPlayer";
 import { Button } from "@components/ui/button";
 import { Card } from "@components/ui/card";
-import { artists } from "@/constants/artists";
-import { socialItems } from "@/constants/social";
+import { ARTIST } from "@/constants/artists";
+import { SOCIAL_ITEMS } from "@/constants/social";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { Music2 } from "lucide-react";
@@ -12,8 +12,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Artist() {
-  const artistSocials = socialItems.filter(item => 
-    artists.some(artist => 
+  const artistSocials = SOCIAL_ITEMS.filter(item => 
+    ARTIST.some(artist => 
       artist.socials.includes(item.id)
     )
   );
@@ -30,7 +30,7 @@ export default function Artist() {
         </h2>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {artists.map((artist, index) => (
+        {ARTIST.map((artist, index) => (
           <motion.div
             key={artist.id}
             initial={{ opacity: 0, y: 32 }}
@@ -54,7 +54,7 @@ export default function Artist() {
                       {artist.genre}
                     </span>
                   </div>
-                  <h2 className="font-display text-4xl mb-2 group-hover:text-primary transition-colors">
+                  <h2 className="font-display text-4xl uppercase mb-2 group-hover:text-primary transition-colors">
                     {artist.name}
                   </h2>
                 </div>
@@ -93,7 +93,7 @@ export default function Artist() {
                     variant="urban"
                     className="hover:border-primary hover:text-primary"
                   >
-                    <Link href="/booking/artist">
+                    <Link href={`/booking/artist?artist=${artist.slug}`}>
                       Book {artist.name}
                     </Link>
                   </Button>

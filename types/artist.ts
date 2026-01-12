@@ -9,6 +9,7 @@ export interface ArtistTrack {
 export interface Artist {
   id: number,
   name: string,
+  slug: string,
   genre: string,
   image: StaticImageData,
   bio: string,

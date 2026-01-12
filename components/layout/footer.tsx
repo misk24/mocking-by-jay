@@ -1,6 +1,6 @@
 "use client";
 
-import { socialItems } from "@/constants/social";
+import { SOCIAL_ITEMS } from "@/constants/social";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 
@@ -31,7 +31,7 @@ export default function Footer() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex gap-6"
           >
-            {socialItems.map(item => (
+            {SOCIAL_ITEMS.map(item => (
               <a 
                 key={item.id}
                 href={item.href} 

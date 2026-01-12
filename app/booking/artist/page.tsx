@@ -1,20 +1,30 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { motion } from "framer-motion";
+import { ArrowLeft, CalendarIcon } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { ArrowLeft } from "lucide-react";
+import { ARTIST_OPTION, EVENT_TYPES } from "./constant";
 import { ArtistBookingFormValues, artistBookingSchema } from "./schema";
 
 export default function ArtistBooking() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const searchParams = useSearchParams();
+  const artistParam = searchParams.get("artist");
+  const isLockedArtist = Boolean(artistParam);
 
   const form = useForm<ArtistBookingFormValues>({
     resolver: zodResolver(artistBookingSchema),
@@ -23,9 +33,9 @@ export default function ArtistBooking() {
       email: "",
       phone: "",
       eventType: "",
-      eventDate: "",
+      eventDate: undefined,
       eventLocation: "",
-      artist: "",
+      artist: artistParam ?? "",
       details: "",
     },
   });
@@ -46,32 +56,46 @@ export default function ArtistBooking() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <section className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-10 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-          <Link href="/">
-            <Button
-              variant="ghost"
-              className="mb-2"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
-          </Link>
-          <h1 className="font-display text-4xl md:text-5xl text-primary">
-            Book an Artist
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            Fill out the form below and we'll get back to you within 24 hours.
-          </p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Link href="/">
+              <Button
+                variant="ghost"
+                className="mb-2"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Home
+              </Button>
+            </Link>
+            <h1 className="font-display text-4xl md:text-5xl text-primary">
+              Book an Artist
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              Fill out the form below and we'll get back to you within 24 hours.
+            </p>
+          </motion.div>
         </div>
       </header>
 
       {/* Form */}
-      <main className="max-w-2xl mx-auto px-4 py-12">
+      <motion.div
+        initial={{ opacity: 0, y: 48 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }} 
+        className="max-w-2xl mx-auto px-4 py-12"
+      >
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form 
+            onSubmit={form.handleSubmit(onSubmit)} 
+            className="space-y-6"
+          >
             <FormField
               control={form.control}
               name="name"
@@ -79,7 +103,10 @@ export default function ArtistBooking() {
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <Input 
+                      placeholder="John Doe" 
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -94,7 +121,11 @@ export default function ArtistBooking() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="john@example.com" {...field} />
+                      <Input 
+                        type="email" 
+                        placeholder="john@example.com" 
+                        {...field} 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -108,7 +139,11 @@ export default function ArtistBooking() {
                   <FormItem>
                     <FormLabel>Phone Number</FormLabel>
                     <FormControl>
-                      <Input type="tel" placeholder="+1 (555) 000-0000" {...field} />
+                      <Input 
+                        type="tel" 
+                        placeholder="+1 (555) 000-0000" 
+                        {...field} 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,19 +158,24 @@ export default function ArtistBooking() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Event Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
+                    <Select 
+                      onValueChange={field.onChange} 
+                      value={field.value}
+                    >
+                      <FormControl className="text-muted-foreground">
                         <SelectTrigger>
                           <SelectValue placeholder="Select event type" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="concert">Concert</SelectItem>
-                        <SelectItem value="festival">Festival</SelectItem>
-                        <SelectItem value="club">Club Show</SelectItem>
-                        <SelectItem value="private">Private Event</SelectItem>
-                        <SelectItem value="corporate">Corporate Event</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        {EVENT_TYPES.map((option) => (
+                          <SelectItem 
+                            key={option.value}
+                            value={option.value}
+                          >
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -149,9 +189,31 @@ export default function ArtistBooking() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Event Date</FormLabel>
-                    <FormControl>
-                      <Input type="date" {...field} />
-                    </FormControl>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="w-full justify-between hover:bg-transparent text-muted-foreground hover:text-muted-foreground font-normal"
+                        >
+                          {field.value ? format(new Date(field.value), "PPP") : "Pick a date"}
+                          <CalendarIcon className="h-4 w-4 opacity-50" />
+                        </Button>
+                      </PopoverTrigger>
+
+                      <PopoverContent 
+                        className=" w-auto p-0" 
+                        align="start"
+                      >
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          disabled={(date) => date < new Date() || date < new Date("1900-01-01")}
+                          autoFocus
+                          className="p-3 pointer-events-auto"
+                        />
+                      </PopoverContent>
+                    </Popover>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -165,7 +227,10 @@ export default function ArtistBooking() {
                 <FormItem>
                   <FormLabel>Event Location</FormLabel>
                   <FormControl>
-                    <Input placeholder="City, State or Venue Name" {...field} />
+                    <Input 
+                      placeholder="City, State or Venue Name" 
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,18 +243,25 @@ export default function ArtistBooking() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Select Artist</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
+                  <Select 
+                    onValueChange={field.onChange} 
+                    value={field.value} 
+                    disabled={isLockedArtist}
+                  >
+                    <FormControl className="text-muted-foreground">
                       <SelectTrigger>
                         <SelectValue placeholder="Choose an artist" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="artist1">Artist 1</SelectItem>
-                      <SelectItem value="artist2">Artist 2</SelectItem>
-                      <SelectItem value="artist3">Artist 3</SelectItem>
-                      <SelectItem value="multiple">Multiple Artists</SelectItem>
-                      <SelectItem value="any">Any Available</SelectItem>
+                      {ARTIST_OPTION.map((option) => (
+                        <SelectItem 
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {option.label}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -226,7 +298,7 @@ export default function ArtistBooking() {
             </Button>
           </form>
         </Form>
-      </main>
-    </div>
+      </motion.div>
+    </section>
   );
 }

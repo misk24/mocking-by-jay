@@ -4,10 +4,11 @@ import artist3 from "@/public/images/artist-3.jpg";
 import artist4 from "@/public/images/artist-4.jpg";
 import { Artist } from "@/types/artist";
 
-export const artists:Artist[] = [
+export const ARTIST:Artist[] = [
   {
     id: 1,
-    name: "KNOX",
+    name: "Knox",
+    slug: "knox",
     genre: "Trap / Hip-Hop",
     image: artist1,
     bio: "Raw lyricist with hard-hitting beats. Known for authentic street narratives and unfiltered flow.",
@@ -19,7 +20,8 @@ export const artists:Artist[] = [
   },
   {
     id: 2,
-    name: "VELA",
+    name: "Vela",
+    slug: "vela",
     genre: "R&B / Rap",
     image: artist2,
     bio: "Versatile vocalist blending melodic R&B with fierce rap delivery. Rising star with unstoppable energy.",
@@ -31,7 +33,8 @@ export const artists:Artist[] = [
   },
   {
     id: 3,
-    name: "BLAZE",
+    name: "Blaze",
+    slug: "blaze",
     genre: "Gangsta Rap",
     image: artist3,
     bio: "Heavyweight presence with commanding stage power. Authentic storyteller from the streets to the studio.",
@@ -43,7 +46,8 @@ export const artists:Artist[] = [
   },
   {
     id: 4,
-    name: "CIPHER",
+    name: "Cipher",
+    slug: "cipher",
     genre: "Underground / Experimental",
     image: artist4,
     bio: "Producer and artist pushing boundaries with experimental beats and atmospheric soundscapes.",
