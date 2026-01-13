@@ -14,5 +14,5 @@ export interface Artist {
   image: StaticImageData,
   bio: string,
   socials: SocialId[],
-  track: ArtistTrack
+  track: ArtistTrack,
 }

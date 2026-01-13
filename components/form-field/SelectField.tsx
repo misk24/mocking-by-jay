@@ -25,12 +25,12 @@ export function SelectField({ control, name, label, options, placeholder = "", d
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Select onValueChange={field.onChange} value={field.value} disabled={disabled}>
-              <SelectTrigger>
+              <SelectTrigger className="text-muted-foreground">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent>
                 {options.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
+                  <SelectItem key={opt.value} value={opt.value} className="text-muted-foreground">
                     {opt.label}
                   </SelectItem>
                 ))}

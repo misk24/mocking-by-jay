@@ -4,5 +4,5 @@ export interface SocialItem {
   id: SocialId,
   icon: string,
   label: string,
-  href: string
+  href: string,
 }

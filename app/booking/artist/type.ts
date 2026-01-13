@@ -1,9 +1,9 @@
 export interface EventType {
   label: string,
-  value: string
+  value: string,
 }
 
 export interface ArtistOption {
   label: string,
-  value: string
+  value: string,
 }

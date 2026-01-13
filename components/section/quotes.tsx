@@ -5,7 +5,7 @@ import { Quote } from "lucide-react";
 
 export default function Quotes() {
   return (
-    <section className="py-24 px-8 sm:px-16 lg:px-8 bg-deep-black">
+    <section className="px-8 sm:px-16 lg:px-8 py-12 lg:py-24 bg-deep-black">
       <div className="max-w-4xl mx-auto">
         <blockquote className="relative">
           {/* Opening Quote Mark */}

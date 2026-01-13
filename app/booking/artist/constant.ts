@@ -7,10 +7,10 @@ export const EVENT_TYPES: EventType[] = [
   { label: "Club Show", value: "club" },
   { label: "Private Event", value: "private" },
   { label: "Corporate Event", value: "corporate" },
-  { label: "Other", value: "other" }
-];
+  { label: "Other", value: "other" },
+]
 
 export const ARTIST_OPTION: ArtistOption[] = ARTIST.map((artist) => ({
   label: artist.name,
-  value: String(artist.slug)
+  value: String(artist.slug),
 }))

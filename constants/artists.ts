@@ -57,4 +57,4 @@ export const ARTIST:Artist[] = [
       url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
     },
   },
-];
+]
