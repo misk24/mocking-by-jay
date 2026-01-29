@@ -1,17 +1,17 @@
 "use client";
 
-import { MENU_ITEMS } from "@/constants/menu";
+import { navigations } from "@/constants/constant";
 import { useOverlay } from "@/hooks/useOverlay";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
-export default function Header() {
+export function Header() {
   const showMenu = useOverlay();
 
   return (
     <header className="fixed right-0 z-50 p-4 sm:p-6 lg:p-8">
-      <motion.nav 
+      <motion.nav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -28,10 +28,10 @@ export default function Header() {
       </motion.nav>
 
       {showMenu.isOpen && (
-        <motion.div 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          exit={{ opacity: 0 }} 
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           className="fixed inset-0 bg-background/90 backdrop-blur-sm z-10 flex items-center justify-center"
         >
           <button
@@ -44,15 +44,15 @@ export default function Header() {
 
           <nav className="text-center">
             <ul className="space-y-8">
-              {MENU_ITEMS.map((item, index) => (
-                <motion.li 
-                  key={index} 
-                  initial={{ opacity: 0 }} 
-                  animate={{ opacity: 1 }} 
+              {navigations.map((item, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 >
-                  <Link 
-                    href={item.href} 
+                  <Link
+                    href={item.href}
                     className="text-4xl sm:text-6xl font-bold text-foreground hover:text-primary transition-colors"
                   >
                     {item.label}
@@ -64,5 +64,5 @@ export default function Header() {
         </motion.div>
       )}
     </header>
-  )
+  );
 }

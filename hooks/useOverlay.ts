@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 export function useOverlay(initialOpen = false) {
   const [isOpen, setIsOpen] = useState(initialOpen);
   const pathname = usePathname();
-  
+
   const open = useCallback(() => {
     setIsOpen(true);
   }, []);
@@ -14,7 +14,7 @@ export function useOverlay(initialOpen = false) {
   }, []);
 
   const toggle = useCallback(() => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   }, []);
 
   useEffect(() => {
@@ -40,5 +40,5 @@ export function useOverlay(initialOpen = false) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isOpen, close]);
 
-  return {isOpen, open, close, toggle};
+  return { isOpen, open, close, toggle };
 }

@@ -1,62 +1,57 @@
 "use client";
 
-import { SOCIAL_ITEMS } from "@/constants/social";
+import { copy, footSub, logo, socials } from "@/constants/constant";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="bg-deep-black border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           {/* Brand */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center sm:text-left"
           >
-            <h2 className="text-2xl font-display text-foreground mb-2">
-              MOCKING BY JAY
+            <h2 className="text-2xl font-display text-foreground uppercase mb-2">
+              {logo}
             </h2>
-            <p className="text-sm text-muted-foreground">
-              Independent. Urban. Chill.
-            </p>
+            <p className="text-sm text-muted-foreground">{footSub}</p>
           </motion.div>
 
           {/* Social Links */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex gap-6"
           >
-            {SOCIAL_ITEMS.map(item => (
-              <a 
+            {socials.map((item) => (
+              <a
                 key={item.id}
-                href={item.href} 
+                href={item.href}
                 className="text-muted-foreground hover:text-primary transition-color"
                 aria-label={item.label}
               >
-                <Icon 
-                  icon={`simple-icons:${item.icon}`} 
-                  className="w-6 h-6" 
-                />
+                <Icon icon={`simple-icons:${item.icon}`} className="w-6 h-6" />
               </a>
             ))}
           </motion.div>
 
           {/* Copyright */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center sm:text-right text-sm text-muted-foreground"
           >
-            © {new Date().getFullYear()} Mocking by Jay. All rights reserved.
+            © {new Date().getFullYear()} {copy}
           </motion.div>
         </div>
       </div>
-    </footer> 
-  )
+    </footer>
+  );
 }

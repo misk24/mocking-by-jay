@@ -1,12 +1,11 @@
-"use client";
+import { BookArtist } from "@/components/booking/artist";
+import type { Metadata } from "next";
 
-import { Suspense } from "react";
-import ArtistBookingForm from "./ArtistBookingForm";
+export const metadata: Metadata = {
+  title: "Mocking by Jay - Book Artist",
+  description: "",
+};
 
-export default function BookingArtist() {
-  return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading form...</div>}>
-      <ArtistBookingForm />
-    </Suspense>
-  );
-}
+export default function BookArtistPage() {
+  return <BookArtist />;
+};

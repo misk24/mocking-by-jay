@@ -1,8 +1,8 @@
-import About from "@/components/section/about";
-import Artist from "@/components/section/artist";
-import Contact from "@/components/section/contact";
-import Hero from "@/components/section/hero";
-import Quotes from "@/components/section/quotes";
+import { About } from "@/components/landing/about";
+import { Artist } from "@/components/landing/artist";
+import { Contact } from "@/components/landing/contact";
+import { Hero } from "@/components/landing/hero";
+import { Quotes } from "@/components/landing/quote";
 
 export default function Home() {
   return (

@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from "react";
-import { Play, Pause, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
+import { Pause, Play, Volume2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 interface AudioPlayerProps {
   trackName: string;
@@ -11,7 +11,12 @@ interface AudioPlayerProps {
   className?: string;
 }
 
-export const AudioPlayer = ({ trackName, artistName, audioUrl, className }: AudioPlayerProps) => {
+export const AudioPlayer = ({
+  trackName,
+  artistName,
+  audioUrl,
+  className,
+}: AudioPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -86,18 +91,25 @@ export const AudioPlayer = ({ trackName, artistName, audioUrl, className }: Audi
   };
 
   return (
-    <div className={cn("bg-card/50 border border-border rounded-lg p-4 space-y-3", className)}>
-      <audio 
-        ref={audioRef} 
-        src={audioUrl} 
+    <div
+      className={cn(
+        "bg-card/50 border border-border rounded-lg p-4 space-y-3",
+        className,
+      )}
+    >
+      <audio
+        ref={audioRef}
+        src={audioUrl}
         preload="metadata"
         onError={(e) => {
           console.error("Audio loading error:", e);
         }}
       />
-      
+
       <div className="space-y-1">
-        <h4 className="font-semibold text-foreground text-sm tracking-wider">{trackName}</h4>
+        <h4 className="font-semibold text-foreground text-sm tracking-wider">
+          {trackName}
+        </h4>
         <p className="text-xs text-muted-foreground">{artistName}</p>
       </div>
 
@@ -108,7 +120,11 @@ export const AudioPlayer = ({ trackName, artistName, audioUrl, className }: Audi
           onClick={togglePlay}
           className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground cursor-pointer"
         >
-          {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-0.5" />}
+          {isPlaying ? (
+            <Pause className="h-5 w-5" />
+          ) : (
+            <Play className="h-5 w-5 ml-0.5" />
+          )}
         </Button>
 
         <div className="flex-1 space-y-1">
